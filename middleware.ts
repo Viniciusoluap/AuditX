@@ -5,16 +5,21 @@ const authConfigured =
   !process.env.NEXT_PUBLIC_SUPABASE_URL.includes("xxxxxxxx");
 
 /**
- * No Next.js 16, este arquivo precisa se chamar `proxy.ts` (não mais
- * `middleware.ts`) para rodar no runtime Node.js — o antigo `middleware.ts`
- * roda no Edge Runtime, que na Vercel (Turbopack) estava travando em
- * produção com "ReferenceError: __dirname is not defined" mesmo sem
- * nenhuma dependência Node no código.
+ * Middleware leve, sem dependências externas (só APIs nativas do Next.js).
+ *
+ * O crash "ReferenceError: __dirname is not defined" que aparecia em produção
+ * era do bundler Turbopack ao empacotar o middleware pro Edge Runtime, não
+ * do código em si — por isso o build (`npm run build`, que usa `--webpack`,
+ * ver package.json) usa Webpack em vez de Turbopack. Tentamos trocar pra
+ * `proxy.ts` (runtime Node.js) antes disso, mas o builder da Vercel não
+ * conseguia gerar rotas corretamente pra essa combinação (produção
+ * respondia 404 em tudo, com zero invocações de função nos logs).
  *
  * Faz apenas uma checagem de presença do cookie de sessão do Supabase —
- * a validação real (token válido/expirado) acontece no layout autenticado.
+ * a validação real (token válido/expirado) acontece no layout autenticado,
+ * que roda em Node.js e pode usar @supabase/ssr sem restrições de Edge.
  */
-export function proxy(request: NextRequest) {
+export function middleware(request: NextRequest) {
   if (!authConfigured) {
     return NextResponse.next();
   }
