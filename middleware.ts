@@ -5,7 +5,11 @@
 // nosso código. Já tentamos renomear pra `proxy.ts` (runtime Node.js) e
 // trocar o bundler pra Webpack; nenhum dos dois resolveu — o polyfill é o
 // workaround documentado pra esse bug específico.
-import "@/lib/edge-dirname-polyfill";
+//
+// Import relativo (não "@/...") de propósito: o bundler de Edge Functions
+// da Vercel não resolve o alias "@/" a partir do middleware.ts na raiz do
+// projeto (mesmo bug do PR #3 deste repo, com "@/lib/supabase/middleware").
+import "./src/lib/edge-dirname-polyfill";
 import { NextResponse, type NextRequest } from "next/server";
 
 const authConfigured =
