@@ -5,14 +5,16 @@ const authConfigured =
   !process.env.NEXT_PUBLIC_SUPABASE_URL.includes("xxxxxxxx");
 
 /**
- * Middleware leve, sem dependências externas (só APIs nativas do Next.js),
- * para rodar de forma confiável no Edge Runtime da Vercel.
+ * No Next.js 16, este arquivo precisa se chamar `proxy.ts` (não mais
+ * `middleware.ts`) para rodar no runtime Node.js — o antigo `middleware.ts`
+ * roda no Edge Runtime, que na Vercel (Turbopack) estava travando em
+ * produção com "ReferenceError: __dirname is not defined" mesmo sem
+ * nenhuma dependência Node no código.
  *
  * Faz apenas uma checagem de presença do cookie de sessão do Supabase —
- * a validação real (token válido/expirado) acontece no layout autenticado,
- * que roda em Node.js e pode usar @supabase/ssr sem restrições de Edge.
+ * a validação real (token válido/expirado) acontece no layout autenticado.
  */
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   if (!authConfigured) {
     return NextResponse.next();
   }
