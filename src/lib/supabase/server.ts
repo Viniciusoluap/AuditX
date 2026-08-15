@@ -1,9 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-export const authConfigured =
-  !!process.env.NEXT_PUBLIC_SUPABASE_URL &&
-  !process.env.NEXT_PUBLIC_SUPABASE_URL.includes("xxxxxxxx");
+export { authConfigured } from "./config";
 
 export async function createClient() {
   const cookieStore = await cookies();

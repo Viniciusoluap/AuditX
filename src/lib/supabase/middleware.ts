@@ -1,6 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-import { authConfigured } from "./server";
+import { authConfigured } from "./config";
 
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
