@@ -1,3 +1,11 @@
+// Precisa vir antes do import de "next/server": o crash de produção
+// "ReferenceError: __dirname is not defined" é o `ua-parser-js` empacotado
+// dentro do próprio `next/server` (bug conhecido do Next.js, ainda presente
+// na 16.3.1 — https://github.com/vercel/next.js/issues/53968), não algo do
+// nosso código. Já tentamos renomear pra `proxy.ts` (runtime Node.js) e
+// trocar o bundler pra Webpack; nenhum dos dois resolveu — o polyfill é o
+// workaround documentado pra esse bug específico.
+import "@/lib/edge-dirname-polyfill";
 import { NextResponse, type NextRequest } from "next/server";
 
 const authConfigured =
@@ -6,14 +14,6 @@ const authConfigured =
 
 /**
  * Middleware leve, sem dependências externas (só APIs nativas do Next.js).
- *
- * O crash "ReferenceError: __dirname is not defined" que aparecia em produção
- * era do bundler Turbopack ao empacotar o middleware pro Edge Runtime, não
- * do código em si — por isso o build (`npm run build`, que usa `--webpack`,
- * ver package.json) usa Webpack em vez de Turbopack. Tentamos trocar pra
- * `proxy.ts` (runtime Node.js) antes disso, mas o builder da Vercel não
- * conseguia gerar rotas corretamente pra essa combinação (produção
- * respondia 404 em tudo, com zero invocações de função nos logs).
  *
  * Faz apenas uma checagem de presença do cookie de sessão do Supabase —
  * a validação real (token válido/expirado) acontece no layout autenticado,
