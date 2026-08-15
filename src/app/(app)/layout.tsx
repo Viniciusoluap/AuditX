@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { authConfigured, createClient } from "@/lib/supabase/server";
 import { logout } from "./actions";
 
@@ -18,7 +19,8 @@ export default async function AppLayout({ children }: { children: React.ReactNod
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    userEmail = user?.email ?? null;
+    if (!user) redirect("/login");
+    userEmail = user.email ?? null;
   }
 
   return (
