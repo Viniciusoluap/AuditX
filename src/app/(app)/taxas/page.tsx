@@ -53,10 +53,10 @@ export default async function TaxasPage({
         <StatCard
           label="Valor ainda a receber"
           value={formatBRL(totalPrevisto - totalPago)}
-          tone={totalPrevisto - totalPago > 0 ? "warning" as never : "positive"}
+          tone={totalPrevisto - totalPago > 0 ? "warning" : "positive"}
         />
       </div>
-      <p className="mb-6 -mt-4 text-xs text-slate-400">
+      <p className="mb-6 -mt-4 text-xs text-slate-500">
         Considera apenas as taxas de receita própria da Prospecta ({TAXAS_RECEITA_PROSPECTA.join(", ")}) — as
         demais taxas (cartório, impostos, seguros) são pagas pelo cliente direto aos órgãos competentes e só
         aparecem nos cards de cada cliente abaixo, para acompanhamento.
@@ -83,13 +83,13 @@ export default async function TaxasPage({
             name="cliente"
             placeholder="Nome do cliente"
             required
-            className="min-w-64 flex-1 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none"
+            className="min-w-64 flex-1 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1"
           />
           <button type="submit" className="rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800">
             + Cliente
           </button>
         </form>
-        <p className="mt-2 text-xs text-slate-400">
+        <p className="mt-2 text-xs text-slate-500">
           Cria automaticamente todas as categorias de taxa ({ano}) zeradas pra esse cliente — depois é só preencher os
           valores no card dele.
         </p>
@@ -128,14 +128,14 @@ export default async function TaxasPage({
                           <MoneyInput
                             name={`previsto-${item.id}`}
                             defaultValue={item.valorPrevisto}
-                            className="w-24 rounded border border-slate-200 px-1.5 py-1 text-right text-xs focus:border-slate-500 focus:outline-none"
+                            className="w-24 rounded border border-slate-200 px-1.5 py-1 text-right text-xs focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1"
                           />
                         </td>
                         <td className="px-2 py-1.5">
                           <MoneyInput
                             name={`pago-${item.id}`}
                             defaultValue={item.valorPago}
-                            className="w-24 rounded border border-slate-200 px-1.5 py-1 text-right text-xs focus:border-slate-500 focus:outline-none"
+                            className="w-24 rounded border border-slate-200 px-1.5 py-1 text-right text-xs focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1"
                           />
                         </td>
                       </tr>

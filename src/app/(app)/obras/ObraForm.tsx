@@ -19,7 +19,7 @@ function Field({
   required?: boolean;
 }) {
   const isMoney = type === "number" && step === "0.01";
-  const inputClassName = "mt-1 w-full rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none";
+  const inputClassName = "mt-1 w-full rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1";
 
   return (
     <div>
@@ -132,7 +132,7 @@ export function ObraForm({
             name="observacoes"
             rows={3}
             defaultValue={obra?.observacoes ?? ""}
-            className="mt-1 w-full rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none"
+            className="mt-1 w-full rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1"
           />
         </div>
       </Section>

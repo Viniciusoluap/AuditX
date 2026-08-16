@@ -3,6 +3,7 @@ import { getEmpreendimentosComLotes } from "@/lib/queries";
 import { formatBRL, num } from "@/lib/format";
 import { Card, PageHeader, Pill, Th } from "@/components/ui";
 import { MoneyInput } from "@/components/money-input";
+import { ConfirmSubmitButton } from "@/components/confirm-submit-button";
 import { createLote, deleteLote, updateLote } from "./actions";
 
 export default async function LotesPage() {
@@ -59,7 +60,7 @@ export default async function LotesPage() {
                               form={formId}
                               name="lote"
                               defaultValue={l.lote}
-                              className="w-44 rounded border border-transparent px-1.5 py-1 text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none"
+                              className="w-44 rounded border border-transparent px-1.5 py-1 text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1"
                             />
                           </td>
                           <td className="px-3 py-1.5">
@@ -76,7 +77,7 @@ export default async function LotesPage() {
                               formId={formId}
                               name="valorAvaliacao"
                               defaultValue={l.valorAvaliacao}
-                              className="w-28 rounded border border-transparent px-1.5 py-1 text-right text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none"
+                              className="w-28 rounded border border-transparent px-1.5 py-1 text-right text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1"
                             />
                           </td>
                           <td className="px-2 py-1.5">
@@ -84,7 +85,7 @@ export default async function LotesPage() {
                               formId={formId}
                               name="valorPagoCef"
                               defaultValue={l.valorPagoCef}
-                              className="w-28 rounded border border-transparent px-1.5 py-1 text-right text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none"
+                              className="w-28 rounded border border-transparent px-1.5 py-1 text-right text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1"
                             />
                           </td>
                           <td className="px-2 py-1.5">
@@ -92,7 +93,7 @@ export default async function LotesPage() {
                               formId={formId}
                               name="valorTerceiro"
                               defaultValue={l.valorTerceiro}
-                              className="w-28 rounded border border-transparent px-1.5 py-1 text-right text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none"
+                              className="w-28 rounded border border-transparent px-1.5 py-1 text-right text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1"
                             />
                           </td>
                           <td className="px-3 py-1.5 text-right text-sm font-medium text-emerald-700">
@@ -107,11 +108,14 @@ export default async function LotesPage() {
                             >
                               Salvar
                             </button>
-                            <form action={deleteWithId} className="inline">
-                              <button type="submit" className="ml-2 rounded-md px-2.5 py-1 text-xs font-medium text-red-600 hover:bg-red-50">
-                                Excluir
-                              </button>
-                            </form>
+                            <ConfirmSubmitButton
+                              action={deleteWithId}
+                              confirmMessage={`Excluir o lote "${l.lote}"? Esta ação não pode ser desfeita.`}
+                              formClassName="inline"
+                              className="ml-2 rounded-md px-2.5 py-1 text-xs font-medium text-red-600 hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
+                            >
+                              Excluir
+                            </ConfirmSubmitButton>
                           </td>
                         </tr>
                       );
@@ -132,11 +136,11 @@ export default async function LotesPage() {
               </Card>
 
               <form action={createWithEmp} className="mt-3 flex flex-wrap gap-2">
-                <input name="lote" placeholder="Novo lote" required className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
-                <MoneyInput name="valorAvaliacao" placeholder="Avaliação" className="w-32 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
-                <MoneyInput name="valorPagoCef" placeholder="Pago CEF" className="w-32 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
-                <input name="valorTerceiroLabel" placeholder={terceiroLabel} defaultValue={terceiroLabel} className="w-36 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
-                <MoneyInput name="valorTerceiro" placeholder="Valor terceiro" className="w-32 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
+                <input name="lote" placeholder="Novo lote" required className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1" />
+                <MoneyInput name="valorAvaliacao" placeholder="Avaliação" className="w-32 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1" />
+                <MoneyInput name="valorPagoCef" placeholder="Pago CEF" className="w-32 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1" />
+                <input name="valorTerceiroLabel" placeholder={terceiroLabel} defaultValue={terceiroLabel} className="w-36 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1" />
+                <MoneyInput name="valorTerceiro" placeholder="Valor terceiro" className="w-32 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1" />
                 <button type="submit" className="rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800">
                   + Lote
                 </button>

@@ -53,14 +53,14 @@ export default async function InvestidoresPage() {
 
                   <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div>
-                      <p className="mb-1.5 text-xs font-semibold uppercase text-slate-400">Histórico de saldo mensal</p>
+                      <p className="mb-1.5 text-xs font-semibold uppercase text-slate-500">Histórico de saldo mensal</p>
                       <table className="w-full text-sm">
                         <tbody className="divide-y divide-slate-50">
                           {aporte.saldos.map((s) => (
                             <tr key={s.id}>
                               <td className="py-1 text-slate-500">{formatDate(s.mesRef)}</td>
                               <td className="py-1 text-right font-medium text-slate-800">{formatBRL(s.saldo)}</td>
-                              <td className="py-1 text-right text-xs text-slate-400">
+                              <td className="py-1 text-right text-xs text-slate-500">
                                 {s.jurosMes ? `juros: ${formatBRL(s.jurosMes)}` : ""}
                               </td>
                             </tr>
@@ -72,12 +72,12 @@ export default async function InvestidoresPage() {
                           type="date"
                           name="mesRef"
                           required
-                          className="rounded-md border border-slate-300 px-2 py-1 text-xs focus:border-slate-500 focus:outline-none"
+                          className="rounded-md border border-slate-300 px-2 py-1 text-xs focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1"
                         />
                         <MoneyInput
                           name="saldo"
                           placeholder="Novo saldo"
-                          className="w-28 rounded-md border border-slate-300 px-2 py-1 text-xs focus:border-slate-500 focus:outline-none"
+                          className="w-28 rounded-md border border-slate-300 px-2 py-1 text-xs focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1"
                         />
                         <button type="submit" className="rounded-md bg-slate-900 px-2.5 py-1 text-xs font-medium text-white hover:bg-slate-800">
                           Registrar mês
@@ -86,7 +86,7 @@ export default async function InvestidoresPage() {
                     </div>
 
                     <div>
-                      <p className="mb-1.5 text-xs font-semibold uppercase text-slate-400">
+                      <p className="mb-1.5 text-xs font-semibold uppercase text-slate-500">
                         Saques / Prorrogações {totalSaques ? `(total: ${formatBRL(totalSaques)})` : ""}
                       </p>
                       <table className="w-full text-sm">
@@ -101,15 +101,15 @@ export default async function InvestidoresPage() {
                         </tbody>
                       </table>
                       <form action={registrarMovimentoAction} className="mt-2 flex gap-2">
-                        <select name="tipo" className="rounded-md border border-slate-300 px-2 py-1 text-xs focus:border-slate-500 focus:outline-none">
+                        <select name="tipo" className="rounded-md border border-slate-300 px-2 py-1 text-xs focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1">
                           <option value="saque">Saque</option>
                           <option value="prorrogacao">Prorrogação</option>
                         </select>
-                        <input type="date" name="data" className="rounded-md border border-slate-300 px-2 py-1 text-xs focus:border-slate-500 focus:outline-none" />
+                        <input type="date" name="data" className="rounded-md border border-slate-300 px-2 py-1 text-xs focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1" />
                         <MoneyInput
                           name="valor"
                           placeholder="Valor"
-                          className="w-24 rounded-md border border-slate-300 px-2 py-1 text-xs focus:border-slate-500 focus:outline-none"
+                          className="w-24 rounded-md border border-slate-300 px-2 py-1 text-xs focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1"
                         />
                         <button type="submit" className="rounded-md bg-slate-900 px-2.5 py-1 text-xs font-medium text-white hover:bg-slate-800">
                           Registrar
@@ -127,10 +127,10 @@ export default async function InvestidoresPage() {
       <Card className="mt-6">
         <p className="mb-4 text-sm font-semibold text-slate-900">Novo investidor / aporte</p>
         <form action={createInvestidor} className="grid grid-cols-2 gap-3 sm:grid-cols-5">
-          <input name="nome" placeholder="Nome" required className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none sm:col-span-2" />
-          <input name="dataAporte" type="date" className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
-          <MoneyInput name="valorInicial" placeholder="Valor inicial" className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
-          <input name="taxaMensal" type="number" step="0.0001" placeholder="Taxa mensal (0.01 = 1%)" className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
+          <input name="nome" placeholder="Nome" required className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1 sm:col-span-2" />
+          <input name="dataAporte" type="date" className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1" />
+          <MoneyInput name="valorInicial" placeholder="Valor inicial" className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1" />
+          <input name="taxaMensal" type="number" step="0.0001" placeholder="Taxa mensal (0.01 = 1%)" className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1" />
           <label className="flex items-center gap-2 text-sm text-slate-600 sm:col-span-4">
             <input type="checkbox" name="ehDivida" className="rounded border-slate-300" />
             Marcar como passivo/dívida (ex.: valores a pagar, não aporte de terceiro)

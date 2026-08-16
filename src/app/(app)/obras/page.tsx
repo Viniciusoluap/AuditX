@@ -60,7 +60,7 @@ export default async function ObrasPage({
         description="Controle completo de vendas, financiamento CEF, custos e lucro por obra — equivalente às abas “Obras 2025” e “Obras 2026”."
         action={
           <Link
-            href="/obras/novo"
+            href={`/obras/novo?ano=${ano}`}
             className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
           >
             + Nova obra
@@ -77,7 +77,7 @@ export default async function ObrasPage({
         ]}
       />
 
-      <p className="mb-2 text-xs text-slate-400">
+      <p className="mb-2 text-xs text-slate-500">
         Tabela completa, igual à planilha original — arraste para o lado para ver todas as colunas.
       </p>
       <Card className="overflow-x-auto p-0">
@@ -150,7 +150,7 @@ export default async function ObrasPage({
                 <Td className="text-right">{formatBRL(r.vlrComissaoCorretor)}</Td>
                 <Td className="text-right">{formatBRL(r.corretorJaRecebeu)}</Td>
                 <Td className="text-right">{formatBRL(r.custoObra)}</Td>
-                <Td className={`text-right ${num(r.vlrDisponivel) < 0 ? "text-red-600" : "text-emerald-600"}`}>
+                <Td className={`text-right ${num(r.vlrDisponivel) < 0 ? "text-red-600" : "text-emerald-700"}`}>
                   {formatBRL(r.vlrDisponivel)}
                 </Td>
                 <Td className="text-right">{formatBRL(r.vlrTerminarObra)}</Td>
