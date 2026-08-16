@@ -3204,7 +3204,7 @@
     },
     {
       "ano": 2025,
-      "cliente": "Luciano Oliveira Leite",
+      "cliente": "Luciano Oliveira Leite *Aurora",
       "tipo": "Projetos",
       "categoria": "durante_obra",
       "ordem": 0,
@@ -3213,7 +3213,7 @@
     },
     {
       "ano": 2025,
-      "cliente": "Luciano Oliveira Leite",
+      "cliente": "Luciano Oliveira Leite *Aurora",
       "tipo": "PCI",
       "categoria": "durante_obra",
       "ordem": 1,
@@ -3222,7 +3222,7 @@
     },
     {
       "ano": 2025,
-      "cliente": "Luciano Oliveira Leite",
+      "cliente": "Luciano Oliveira Leite *Aurora",
       "tipo": "Impressões",
       "categoria": "durante_obra",
       "ordem": 2,
@@ -3231,7 +3231,7 @@
     },
     {
       "ano": 2025,
-      "cliente": "Luciano Oliveira Leite",
+      "cliente": "Luciano Oliveira Leite *Aurora",
       "tipo": "Agua",
       "categoria": "durante_obra",
       "ordem": 3,
@@ -3240,7 +3240,7 @@
     },
     {
       "ano": 2025,
-      "cliente": "Luciano Oliveira Leite",
+      "cliente": "Luciano Oliveira Leite *Aurora",
       "tipo": "Despachante",
       "categoria": "durante_obra",
       "ordem": 4,
@@ -3249,7 +3249,7 @@
     },
     {
       "ano": 2025,
-      "cliente": "Luciano Oliveira Leite",
+      "cliente": "Luciano Oliveira Leite *Aurora",
       "tipo": "Cert. Inteiro Teor",
       "categoria": "durante_obra",
       "ordem": 5,
@@ -3258,7 +3258,7 @@
     },
     {
       "ano": 2025,
-      "cliente": "Luciano Oliveira Leite",
+      "cliente": "Luciano Oliveira Leite *Aurora",
       "tipo": "ART",
       "categoria": "durante_obra",
       "ordem": 6,
@@ -3267,7 +3267,7 @@
     },
     {
       "ano": 2025,
-      "cliente": "Luciano Oliveira Leite",
+      "cliente": "Luciano Oliveira Leite *Aurora",
       "tipo": "Alvara",
       "categoria": "durante_obra",
       "ordem": 7,
@@ -3276,7 +3276,7 @@
     },
     {
       "ano": 2025,
-      "cliente": "Luciano Oliveira Leite",
+      "cliente": "Luciano Oliveira Leite *Aurora",
       "tipo": "Vistoria CEF",
       "categoria": "durante_obra",
       "ordem": 8,
@@ -3285,7 +3285,7 @@
     },
     {
       "ano": 2025,
-      "cliente": "Luciano Oliveira Leite",
+      "cliente": "Luciano Oliveira Leite *Aurora",
       "tipo": "Tx Ass CEF",
       "categoria": "durante_obra",
       "ordem": 9,
@@ -3294,7 +3294,7 @@
     },
     {
       "ano": 2025,
-      "cliente": "Luciano Oliveira Leite",
+      "cliente": "Luciano Oliveira Leite *Aurora",
       "tipo": "ITBI",
       "categoria": "durante_obra",
       "ordem": 11,
@@ -3303,7 +3303,7 @@
     },
     {
       "ano": 2025,
-      "cliente": "Luciano Oliveira Leite",
+      "cliente": "Luciano Oliveira Leite *Aurora",
       "tipo": "Registro Cartório",
       "categoria": "durante_obra",
       "ordem": 12,
@@ -3312,7 +3312,7 @@
     },
     {
       "ano": 2025,
-      "cliente": "Luciano Oliveira Leite",
+      "cliente": "Luciano Oliveira Leite *Aurora",
       "tipo": "Encargos de Obra",
       "categoria": "durante_obra",
       "ordem": 13,
@@ -3321,7 +3321,7 @@
     },
     {
       "ano": 2025,
-      "cliente": "Luciano Oliveira Leite",
+      "cliente": "Luciano Oliveira Leite *Aurora",
       "tipo": "Habite-se",
       "categoria": "casa_pronta",
       "ordem": 14,
@@ -3330,7 +3330,7 @@
     },
     {
       "ano": 2025,
-      "cliente": "Luciano Oliveira Leite",
+      "cliente": "Luciano Oliveira Leite *Aurora",
       "tipo": "CND e CNO",
       "categoria": "casa_pronta",
       "ordem": 15,
@@ -3339,7 +3339,7 @@
     },
     {
       "ano": 2025,
-      "cliente": "Luciano Oliveira Leite",
+      "cliente": "Luciano Oliveira Leite *Aurora",
       "tipo": "Averbação",
       "categoria": "casa_pronta",
       "ordem": 16,
@@ -4230,7 +4230,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "D'Anne Almeida Rodrigues",
+      "cliente": "D'ANNE ALMEIDA RODRIGUES",
       "tipo": "Projetos",
       "categoria": "durante_obra",
       "ordem": 0,
@@ -4239,7 +4239,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "D'Anne Almeida Rodrigues",
+      "cliente": "D'ANNE ALMEIDA RODRIGUES",
       "tipo": "PCI",
       "categoria": "durante_obra",
       "ordem": 1,
@@ -4248,7 +4248,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "D'Anne Almeida Rodrigues",
+      "cliente": "D'ANNE ALMEIDA RODRIGUES",
       "tipo": "Impressões",
       "categoria": "durante_obra",
       "ordem": 2,
@@ -4257,7 +4257,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "D'Anne Almeida Rodrigues",
+      "cliente": "D'ANNE ALMEIDA RODRIGUES",
       "tipo": "Agua",
       "categoria": "durante_obra",
       "ordem": 3,
@@ -4266,7 +4266,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "D'Anne Almeida Rodrigues",
+      "cliente": "D'ANNE ALMEIDA RODRIGUES",
       "tipo": "Despachante",
       "categoria": "durante_obra",
       "ordem": 4,
@@ -4275,7 +4275,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "D'Anne Almeida Rodrigues",
+      "cliente": "D'ANNE ALMEIDA RODRIGUES",
       "tipo": "Cert. Inteiro Teor",
       "categoria": "durante_obra",
       "ordem": 5,
@@ -4284,7 +4284,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "D'Anne Almeida Rodrigues",
+      "cliente": "D'ANNE ALMEIDA RODRIGUES",
       "tipo": "ART",
       "categoria": "durante_obra",
       "ordem": 6,
@@ -4293,7 +4293,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "D'Anne Almeida Rodrigues",
+      "cliente": "D'ANNE ALMEIDA RODRIGUES",
       "tipo": "Alvara",
       "categoria": "durante_obra",
       "ordem": 7,
@@ -4302,7 +4302,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "D'Anne Almeida Rodrigues",
+      "cliente": "D'ANNE ALMEIDA RODRIGUES",
       "tipo": "Vistoria CEF",
       "categoria": "durante_obra",
       "ordem": 8,
@@ -4311,7 +4311,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "D'Anne Almeida Rodrigues",
+      "cliente": "D'ANNE ALMEIDA RODRIGUES",
       "tipo": "Tx Ass CEF",
       "categoria": "durante_obra",
       "ordem": 9,
@@ -4320,7 +4320,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "D'Anne Almeida Rodrigues",
+      "cliente": "D'ANNE ALMEIDA RODRIGUES",
       "tipo": "ITBI",
       "categoria": "durante_obra",
       "ordem": 11,
@@ -4329,7 +4329,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "D'Anne Almeida Rodrigues",
+      "cliente": "D'ANNE ALMEIDA RODRIGUES",
       "tipo": "Registro Cartório",
       "categoria": "durante_obra",
       "ordem": 12,
@@ -4338,7 +4338,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "D'Anne Almeida Rodrigues",
+      "cliente": "D'ANNE ALMEIDA RODRIGUES",
       "tipo": "Encargos de Obra",
       "categoria": "durante_obra",
       "ordem": 13,
@@ -4347,7 +4347,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "D'Anne Almeida Rodrigues",
+      "cliente": "D'ANNE ALMEIDA RODRIGUES",
       "tipo": "Habite-se",
       "categoria": "casa_pronta",
       "ordem": 14,
@@ -4356,7 +4356,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "D'Anne Almeida Rodrigues",
+      "cliente": "D'ANNE ALMEIDA RODRIGUES",
       "tipo": "CND e CNO",
       "categoria": "casa_pronta",
       "ordem": 15,
@@ -4365,7 +4365,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "D'Anne Almeida Rodrigues",
+      "cliente": "D'ANNE ALMEIDA RODRIGUES",
       "tipo": "Averbação",
       "categoria": "casa_pronta",
       "ordem": 16,
@@ -4374,7 +4374,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "Joao Flavio",
+      "cliente": "Joao Flavio - Jardim America",
       "tipo": "Projetos",
       "categoria": "durante_obra",
       "ordem": 0,
@@ -4383,7 +4383,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "Joao Flavio",
+      "cliente": "Joao Flavio - Jardim America",
       "tipo": "PCI",
       "categoria": "durante_obra",
       "ordem": 1,
@@ -4392,7 +4392,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "Joao Flavio",
+      "cliente": "Joao Flavio - Jardim America",
       "tipo": "Impressões",
       "categoria": "durante_obra",
       "ordem": 2,
@@ -4401,7 +4401,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "Joao Flavio",
+      "cliente": "Joao Flavio - Jardim America",
       "tipo": "Agua",
       "categoria": "durante_obra",
       "ordem": 3,
@@ -4410,7 +4410,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "Joao Flavio",
+      "cliente": "Joao Flavio - Jardim America",
       "tipo": "Despachante",
       "categoria": "durante_obra",
       "ordem": 4,
@@ -4419,7 +4419,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "Joao Flavio",
+      "cliente": "Joao Flavio - Jardim America",
       "tipo": "Cert. Inteiro Teor",
       "categoria": "durante_obra",
       "ordem": 5,
@@ -4428,7 +4428,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "Joao Flavio",
+      "cliente": "Joao Flavio - Jardim America",
       "tipo": "ART",
       "categoria": "durante_obra",
       "ordem": 6,
@@ -4437,7 +4437,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "Joao Flavio",
+      "cliente": "Joao Flavio - Jardim America",
       "tipo": "Alvara",
       "categoria": "durante_obra",
       "ordem": 7,
@@ -4446,7 +4446,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "Joao Flavio",
+      "cliente": "Joao Flavio - Jardim America",
       "tipo": "Vistoria CEF",
       "categoria": "durante_obra",
       "ordem": 8,
@@ -4455,7 +4455,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "Joao Flavio",
+      "cliente": "Joao Flavio - Jardim America",
       "tipo": "Tx Ass CEF",
       "categoria": "durante_obra",
       "ordem": 9,
@@ -4464,7 +4464,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "Joao Flavio",
+      "cliente": "Joao Flavio - Jardim America",
       "tipo": "Seguro CEF",
       "categoria": "durante_obra",
       "ordem": 10,
@@ -4473,7 +4473,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "Joao Flavio",
+      "cliente": "Joao Flavio - Jardim America",
       "tipo": "ITBI",
       "categoria": "durante_obra",
       "ordem": 11,
@@ -4482,7 +4482,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "Joao Flavio",
+      "cliente": "Joao Flavio - Jardim America",
       "tipo": "Registro Cartório",
       "categoria": "durante_obra",
       "ordem": 12,
@@ -4491,7 +4491,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "Joao Flavio",
+      "cliente": "Joao Flavio - Jardim America",
       "tipo": "Habite-se",
       "categoria": "casa_pronta",
       "ordem": 14,
@@ -4500,7 +4500,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "Joao Flavio",
+      "cliente": "Joao Flavio - Jardim America",
       "tipo": "CND e CNO",
       "categoria": "casa_pronta",
       "ordem": 15,
@@ -4509,7 +4509,7 @@
     },
     {
       "ano": 2026,
-      "cliente": "Joao Flavio",
+      "cliente": "Joao Flavio - Jardim America",
       "tipo": "Averbação",
       "categoria": "casa_pronta",
       "ordem": 16,
