@@ -3,6 +3,13 @@ import { formatBRL, inputMoney, num } from "@/lib/format";
 import { Card, PageHeader, StatCard, Tabs } from "@/components/ui";
 import { updateTaxasCliente } from "./actions";
 
+/**
+ * Taxas que são recebimento direto da Prospecta (receita própria) — as demais
+ * (cartório, ITBI, seguros, etc.) são apenas repassadas/monitoradas: pagas
+ * pelo cliente diretamente aos órgãos/instituições competentes.
+ */
+const TAXAS_RECEITA_PROSPECTA = ["Projetos", "PCI", "Agua", "Despachante", "Habite-se", "CND e CNO"];
+
 export default async function TaxasPage({
   searchParams,
 }: {
@@ -19,8 +26,9 @@ export default async function TaxasPage({
     porCliente.get(r.cliente)!.push(r);
   }
 
-  const totalPrevisto = rows.reduce((s, r) => s + num(r.valorPrevisto), 0);
-  const totalPago = rows.reduce((s, r) => s + num(r.valorPago), 0);
+  const rowsReceitaProspecta = rows.filter((r) => TAXAS_RECEITA_PROSPECTA.includes(r.tipo));
+  const totalPrevisto = rowsReceitaProspecta.reduce((s, r) => s + num(r.valorPrevisto), 0);
+  const totalPago = rowsReceitaProspecta.reduce((s, r) => s + num(r.valorPago), 0);
 
   return (
     <div>
@@ -39,14 +47,19 @@ export default async function TaxasPage({
       />
 
       <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <StatCard label="Total previsto" value={formatBRL(totalPrevisto)} />
-        <StatCard label="Total pago" value={formatBRL(totalPago)} />
+        <StatCard label="Valor total a receber" value={formatBRL(totalPrevisto)} />
+        <StatCard label="Valor recebido" value={formatBRL(totalPago)} />
         <StatCard
-          label="Saldo a receber/pagar"
+          label="Valor ainda a receber"
           value={formatBRL(totalPrevisto - totalPago)}
           tone={totalPrevisto - totalPago > 0 ? "warning" as never : "positive"}
         />
       </div>
+      <p className="mb-6 -mt-4 text-xs text-slate-400">
+        Considera apenas as taxas de receita própria da Prospecta ({TAXAS_RECEITA_PROSPECTA.join(", ")}) — as
+        demais taxas (cartório, impostos, seguros) são pagas pelo cliente direto aos órgãos competentes e só
+        aparecem nos cards de cada cliente abaixo, para acompanhamento.
+      </p>
 
       {anotacoes.length ? (
         <Card className="mb-6">
