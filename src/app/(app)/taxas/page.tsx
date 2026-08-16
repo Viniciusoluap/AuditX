@@ -2,7 +2,7 @@ import { getAnotacoes, getTaxasByAno } from "@/lib/queries";
 import { formatBRL, num } from "@/lib/format";
 import { Card, PageHeader, StatCard, Tabs } from "@/components/ui";
 import { MoneyInput } from "@/components/money-input";
-import { updateTaxasCliente } from "./actions";
+import { createTaxasCliente, updateTaxasCliente } from "./actions";
 
 /**
  * Taxas que são recebimento direto da Prospecta (receita própria) — as demais
@@ -75,6 +75,25 @@ export default async function TaxasPage({
           </ul>
         </Card>
       ) : null}
+
+      <Card className="mb-6">
+        <p className="mb-3 text-sm font-semibold text-slate-900">Adicionar novo cliente</p>
+        <form action={createTaxasCliente.bind(null, ano)} className="flex flex-wrap gap-2">
+          <input
+            name="cliente"
+            placeholder="Nome do cliente"
+            required
+            className="min-w-64 flex-1 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none"
+          />
+          <button type="submit" className="rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800">
+            + Cliente
+          </button>
+        </form>
+        <p className="mt-2 text-xs text-slate-400">
+          Cria automaticamente todas as categorias de taxa ({ano}) zeradas pra esse cliente — depois é só preencher os
+          valores no card dele.
+        </p>
+      </Card>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {[...porCliente.entries()].map(([cliente, itens]) => {
