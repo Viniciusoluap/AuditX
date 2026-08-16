@@ -1,6 +1,7 @@
 import { getAnotacoes, getTaxasByAno } from "@/lib/queries";
-import { formatBRL, inputMoney, num } from "@/lib/format";
+import { formatBRL, num } from "@/lib/format";
 import { Card, PageHeader, StatCard, Tabs } from "@/components/ui";
+import { MoneyInput } from "@/components/money-input";
 import { updateTaxasCliente } from "./actions";
 
 /**
@@ -105,20 +106,16 @@ export default async function TaxasPage({
                           <input type="hidden" name="taxaId" value={item.id} />
                         </td>
                         <td className="px-2 py-1.5">
-                          <input
-                            type="number"
-                            step="0.01"
+                          <MoneyInput
                             name={`previsto-${item.id}`}
-                            defaultValue={inputMoney(item.valorPrevisto)}
+                            defaultValue={item.valorPrevisto}
                             className="w-24 rounded border border-slate-200 px-1.5 py-1 text-right text-xs focus:border-slate-500 focus:outline-none"
                           />
                         </td>
                         <td className="px-2 py-1.5">
-                          <input
-                            type="number"
-                            step="0.01"
+                          <MoneyInput
                             name={`pago-${item.id}`}
-                            defaultValue={inputMoney(item.valorPago)}
+                            defaultValue={item.valorPago}
                             className="w-24 rounded border border-slate-200 px-1.5 py-1 text-right text-xs focus:border-slate-500 focus:outline-none"
                           />
                         </td>

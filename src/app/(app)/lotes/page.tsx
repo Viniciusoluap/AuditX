@@ -1,6 +1,7 @@
 import { getEmpreendimentosComLotes } from "@/lib/queries";
-import { formatBRL, inputMoney, num } from "@/lib/format";
+import { formatBRL, num } from "@/lib/format";
 import { Card, PageHeader, Th } from "@/components/ui";
+import { MoneyInput } from "@/components/money-input";
 import { createLote, deleteLote, updateLote } from "./actions";
 
 export default async function LotesPage() {
@@ -53,32 +54,26 @@ export default async function LotesPage() {
                             />
                           </td>
                           <td className="px-2 py-1.5">
-                            <input
-                              form={formId}
-                              type="number"
-                              step="0.01"
+                            <MoneyInput
+                              formId={formId}
                               name="valorAvaliacao"
-                              defaultValue={inputMoney(l.valorAvaliacao)}
+                              defaultValue={l.valorAvaliacao}
                               className="w-28 rounded border border-transparent px-1.5 py-1 text-right text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none"
                             />
                           </td>
                           <td className="px-2 py-1.5">
-                            <input
-                              form={formId}
-                              type="number"
-                              step="0.01"
+                            <MoneyInput
+                              formId={formId}
                               name="valorPagoCef"
-                              defaultValue={inputMoney(l.valorPagoCef)}
+                              defaultValue={l.valorPagoCef}
                               className="w-28 rounded border border-transparent px-1.5 py-1 text-right text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none"
                             />
                           </td>
                           <td className="px-2 py-1.5">
-                            <input
-                              form={formId}
-                              type="number"
-                              step="0.01"
+                            <MoneyInput
+                              formId={formId}
                               name="valorTerceiro"
-                              defaultValue={inputMoney(l.valorTerceiro)}
+                              defaultValue={l.valorTerceiro}
                               className="w-28 rounded border border-transparent px-1.5 py-1 text-right text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none"
                             />
                           </td>
@@ -119,10 +114,10 @@ export default async function LotesPage() {
 
               <form action={createWithEmp} className="mt-3 flex flex-wrap gap-2">
                 <input name="lote" placeholder="Novo lote" required className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
-                <input name="valorAvaliacao" type="number" step="0.01" placeholder="Avaliação" className="w-32 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
-                <input name="valorPagoCef" type="number" step="0.01" placeholder="Pago CEF" className="w-32 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
+                <MoneyInput name="valorAvaliacao" placeholder="Avaliação" className="w-32 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
+                <MoneyInput name="valorPagoCef" placeholder="Pago CEF" className="w-32 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
                 <input name="valorTerceiroLabel" placeholder={terceiroLabel} defaultValue={terceiroLabel} className="w-36 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
-                <input name="valorTerceiro" type="number" step="0.01" placeholder="Valor terceiro" className="w-32 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
+                <MoneyInput name="valorTerceiro" placeholder="Valor terceiro" className="w-32 rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
                 <button type="submit" className="rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800">
                   + Lote
                 </button>

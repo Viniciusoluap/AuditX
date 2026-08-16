@@ -1,6 +1,7 @@
 import { getInvestidoresCompletos } from "@/lib/queries";
 import { formatBRL, formatDate, formatPercent, num } from "@/lib/format";
 import { Card, PageHeader, Pill } from "@/components/ui";
+import { MoneyInput } from "@/components/money-input";
 import { createInvestidor, registrarMovimento, registrarSaldoMensal } from "./actions";
 
 export default async function InvestidoresPage() {
@@ -73,12 +74,9 @@ export default async function InvestidoresPage() {
                           required
                           className="rounded-md border border-slate-300 px-2 py-1 text-xs focus:border-slate-500 focus:outline-none"
                         />
-                        <input
-                          type="number"
-                          step="0.01"
+                        <MoneyInput
                           name="saldo"
                           placeholder="Novo saldo"
-                          required
                           className="w-28 rounded-md border border-slate-300 px-2 py-1 text-xs focus:border-slate-500 focus:outline-none"
                         />
                         <button type="submit" className="rounded-md bg-slate-900 px-2.5 py-1 text-xs font-medium text-white hover:bg-slate-800">
@@ -108,12 +106,9 @@ export default async function InvestidoresPage() {
                           <option value="prorrogacao">Prorrogação</option>
                         </select>
                         <input type="date" name="data" className="rounded-md border border-slate-300 px-2 py-1 text-xs focus:border-slate-500 focus:outline-none" />
-                        <input
-                          type="number"
-                          step="0.01"
+                        <MoneyInput
                           name="valor"
                           placeholder="Valor"
-                          required
                           className="w-24 rounded-md border border-slate-300 px-2 py-1 text-xs focus:border-slate-500 focus:outline-none"
                         />
                         <button type="submit" className="rounded-md bg-slate-900 px-2.5 py-1 text-xs font-medium text-white hover:bg-slate-800">
@@ -134,7 +129,7 @@ export default async function InvestidoresPage() {
         <form action={createInvestidor} className="grid grid-cols-2 gap-3 sm:grid-cols-5">
           <input name="nome" placeholder="Nome" required className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none sm:col-span-2" />
           <input name="dataAporte" type="date" className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
-          <input name="valorInicial" type="number" step="0.01" placeholder="Valor inicial" className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
+          <MoneyInput name="valorInicial" placeholder="Valor inicial" className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
           <input name="taxaMensal" type="number" step="0.0001" placeholder="Taxa mensal (0.01 = 1%)" className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
           <label className="flex items-center gap-2 text-sm text-slate-600 sm:col-span-4">
             <input type="checkbox" name="ehDivida" className="rounded border-slate-300" />
