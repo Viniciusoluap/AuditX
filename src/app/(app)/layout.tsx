@@ -43,7 +43,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
             ))}
           </nav>
         </aside>
-        <div className="flex min-h-screen flex-1 flex-col">
+        <div className="flex min-h-screen min-w-0 flex-1 flex-col">
           <header className="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-3 md:px-8">
             <p className="text-sm text-slate-500 md:hidden">Prospecta Construções</p>
             <div />
