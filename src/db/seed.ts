@@ -40,7 +40,24 @@ function toStr(n: number | null | undefined): string {
   return (n ?? 0).toString();
 }
 
+function assertSeedIsSafeToRun() {
+  const databaseUrl = process.env.DATABASE_URL ?? "";
+  const isLocalDatabase = /localhost|127\.0\.0\.1/.test(databaseUrl);
+
+  if (!isLocalDatabase && process.env.SEED_CONFIRM !== "WIPE") {
+    console.error(
+      "\nATENÇÃO: este comando APAGA todas as 12 tabelas antes de recarregar os dados da planilha.\n" +
+        "DATABASE_URL não aponta para localhost — parece ser um banco real (produção/Supabase).\n\n" +
+        "Se é isso mesmo que você quer fazer, rode de novo com:\n\n" +
+        "  SEED_CONFIRM=WIPE npm run db:seed\n"
+    );
+    process.exit(1);
+  }
+}
+
 async function main() {
+  assertSeedIsSafeToRun();
+
   const raw = readFileSync(join(process.cwd(), "src/db/seed-data.json"), "utf-8");
   const data: SeedData = JSON.parse(raw);
 

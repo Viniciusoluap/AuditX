@@ -4,14 +4,13 @@ import { revalidatePath } from "next/cache";
 import { eq } from "drizzle-orm";
 import { db } from "@/db";
 import { lotes } from "@/db/schema";
-
-function toNum(v: FormDataEntryValue | null) {
-  return v === null || v === "" ? "0" : String(Number(v));
-}
+import { requireAuth } from "@/lib/require-auth";
+import { toMoneyString as toNum } from "@/lib/parse-money";
 
 export async function updateLote(id: number, formData: FormData) {
-  const valorPagoCef = Number(formData.get("valorPagoCef") ?? 0);
-  const valorTerceiro = Number(formData.get("valorTerceiro") ?? 0);
+  await requireAuth();
+  const valorPagoCef = Number(toNum(formData.get("valorPagoCef")));
+  const valorTerceiro = Number(toNum(formData.get("valorTerceiro")));
 
   await db
     .update(lotes)
@@ -28,8 +27,9 @@ export async function updateLote(id: number, formData: FormData) {
 }
 
 export async function createLote(empreendimentoId: number, formData: FormData) {
-  const valorPagoCef = Number(formData.get("valorPagoCef") ?? 0);
-  const valorTerceiro = Number(formData.get("valorTerceiro") ?? 0);
+  await requireAuth();
+  const valorPagoCef = Number(toNum(formData.get("valorPagoCef")));
+  const valorTerceiro = Number(toNum(formData.get("valorTerceiro")));
 
   await db.insert(lotes).values({
     empreendimentoId,
@@ -46,6 +46,7 @@ export async function createLote(empreendimentoId: number, formData: FormData) {
 }
 
 export async function deleteLote(id: number) {
+  await requireAuth();
   await db.delete(lotes).where(eq(lotes.id, id));
   revalidatePath("/lotes");
 }

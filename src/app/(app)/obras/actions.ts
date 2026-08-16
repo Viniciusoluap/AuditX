@@ -5,6 +5,8 @@ import { redirect } from "next/navigation";
 import { eq } from "drizzle-orm";
 import { db } from "@/db";
 import { obras } from "@/db/schema";
+import { requireAuth } from "@/lib/require-auth";
+import { toMoneyString } from "@/lib/parse-money";
 
 const NUMERIC_FIELDS = [
   "vgv",
@@ -47,8 +49,7 @@ function buildPayload(formData: FormData) {
     payload[field] = String(formData.get(field) ?? "");
   }
   for (const field of NUMERIC_FIELDS) {
-    const raw = formData.get(field);
-    payload[field] = raw === null || raw === "" ? "0" : String(Number(raw));
+    payload[field] = toMoneyString(formData.get(field));
   }
   for (const field of DATE_FIELDS) {
     const raw = formData.get(field);
@@ -70,6 +71,7 @@ function buildPayload(formData: FormData) {
 }
 
 export async function createObra(formData: FormData) {
+  await requireAuth();
   const payload = buildPayload(formData);
   const [row] = await db
     .insert(obras)
@@ -81,6 +83,7 @@ export async function createObra(formData: FormData) {
 }
 
 export async function updateObra(id: number, formData: FormData) {
+  await requireAuth();
   const payload = buildPayload(formData);
   await db
     .update(obras)
@@ -93,6 +96,7 @@ export async function updateObra(id: number, formData: FormData) {
 }
 
 export async function deleteObra(id: number) {
+  await requireAuth();
   await db.delete(obras).where(eq(obras.id, id));
   revalidatePath("/obras");
   redirect("/obras");

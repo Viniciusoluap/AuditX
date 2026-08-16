@@ -4,6 +4,8 @@ import { revalidatePath } from "next/cache";
 import { eq } from "drizzle-orm";
 import { db } from "@/db";
 import { taxasObra } from "@/db/schema";
+import { requireAuth } from "@/lib/require-auth";
+import { toMoneyString } from "@/lib/parse-money";
 
 const CATEGORIAS_TAXA = [
   { tipo: "Projetos", ordem: 0, categoria: "durante_obra" },
@@ -26,6 +28,7 @@ const CATEGORIAS_TAXA = [
 ] as const;
 
 export async function createTaxasCliente(ano: number, formData: FormData) {
+  await requireAuth();
   const cliente = String(formData.get("cliente") ?? "").trim();
   if (!cliente) return;
 
@@ -43,6 +46,7 @@ export async function createTaxasCliente(ano: number, formData: FormData) {
 }
 
 export async function updateTaxasCliente(ano: number, cliente: string, formData: FormData) {
+  await requireAuth();
   const ids = formData.getAll("taxaId").map((v) => Number(v));
 
   for (const id of ids) {
@@ -51,8 +55,8 @@ export async function updateTaxasCliente(ano: number, cliente: string, formData:
     await db
       .update(taxasObra)
       .set({
-        valorPrevisto: previsto === null || previsto === "" ? "0" : String(Number(previsto)),
-        valorPago: pago === null || pago === "" ? "0" : String(Number(pago)),
+        valorPrevisto: toMoneyString(previsto),
+        valorPago: toMoneyString(pago),
       })
       .where(eq(taxasObra.id, id));
   }
