@@ -123,6 +123,9 @@ async function main() {
 
   const obraKey = (cliente: string, ano: number) => `${ano}::${cliente}`;
   const obraIdByKey = new Map(insertedObras.map((o) => [obraKey(o.cliente, o.ano), o.id]));
+  // Nomes de cliente são únicos entre todas as obras (checado na migração dos lotes);
+  // usado só pra vincular lote comprado -> obra/venda, quando existe.
+  const obraIdByCliente = new Map(insertedObras.map((o) => [o.cliente, o.id]));
 
   // ---- Anotações (obras) ----
   const anotacoesObrasRows = data.anotacoesObras.map((a, idx) => ({
@@ -193,6 +196,7 @@ async function main() {
     await db.insert(lotes).values(
       itens.map((l) => ({
         empreendimentoId,
+        obraId: l.obraCliente ? (obraIdByCliente.get(l.obraCliente as string) ?? null) : null,
         lote: l.lote as string,
         valorAvaliacao: toStr(l.valorAvaliacao as number),
         valorPagoCef: toStr(l.valorPagoCef as number),

@@ -1142,120 +1142,6 @@
     },
     {
       "ano": 2026,
-      "cliente": "Lot. Morada do Bosque",
-      "status": "Disponível",
-      "empreiteiro": "",
-      "cidadeUf": "Imperatriz - MA",
-      "vgv": 200000.0,
-      "vlrFinanciado": 160000.0,
-      "fgts": 0.0,
-      "subsidio": 0.0,
-      "entrada": 40000.0,
-      "vlrPagoEntrada": 0.0,
-      "vlrReceberEntrada": 40000.0,
-      "pctPlsCef": 0.0,
-      "pctRealRecebida": 0.1119791875,
-      "vlrRecebidoCef": 17916.67,
-      "vlrGastoObra": 0.0,
-      "vlrReceberCef": 142083.33,
-      "custoLote": 17916.67,
-      "vlrComissaoCorretor": 8000.0,
-      "corretorJaRecebeu": 0.0,
-      "custoObra": 95000.0,
-      "vlrDisponivel": 79083.33,
-      "vlrTerminarObra": 95000.0,
-      "prazoInicio": null,
-      "diasObra": 0,
-      "prazoTermino": null,
-      "lucroEstimado": 79083.33,
-      "lucroInvestidor": 0.0,
-      "lucroCliente": 31633.332,
-      "lucroProspecta": 47449.998,
-      "proSoluto": 0.0,
-      "taxa": 0,
-      "qtdParcelas": 0.0,
-      "vlrParcela": 0.0,
-      "valorFinal": 0.0,
-      "lucroTotal": 47449.998
-    },
-    {
-      "ano": 2026,
-      "cliente": "Lot. Morada do Bosque",
-      "status": "Disponível",
-      "empreiteiro": "",
-      "cidadeUf": "Imperatriz - MA",
-      "vgv": 200000.0,
-      "vlrFinanciado": 160000.0,
-      "fgts": 0.0,
-      "subsidio": 0.0,
-      "entrada": 40000.0,
-      "vlrPagoEntrada": 0.0,
-      "vlrReceberEntrada": 40000.0,
-      "pctPlsCef": 0.0,
-      "pctRealRecebida": 0.1119791875,
-      "vlrRecebidoCef": 17916.67,
-      "vlrGastoObra": 0.0,
-      "vlrReceberCef": 142083.33,
-      "custoLote": 17916.67,
-      "vlrComissaoCorretor": 8000.0,
-      "corretorJaRecebeu": 0.0,
-      "custoObra": 95000.0,
-      "vlrDisponivel": 79083.33,
-      "vlrTerminarObra": 95000.0,
-      "prazoInicio": null,
-      "diasObra": 0,
-      "prazoTermino": null,
-      "lucroEstimado": 79083.33,
-      "lucroInvestidor": 0.0,
-      "lucroCliente": 31633.332,
-      "lucroProspecta": 47449.998,
-      "proSoluto": 0.0,
-      "taxa": 0,
-      "qtdParcelas": 0.0,
-      "vlrParcela": 0.0,
-      "valorFinal": 0.0,
-      "lucroTotal": 47449.998
-    },
-    {
-      "ano": 2026,
-      "cliente": "Lot. Morada do Bosque *Reginaldo",
-      "status": "Disponível",
-      "empreiteiro": "",
-      "cidadeUf": "Imperatriz - MA",
-      "vgv": 230000.0,
-      "vlrFinanciado": 184000.0,
-      "fgts": 0.0,
-      "subsidio": 0.0,
-      "entrada": 46000.0,
-      "vlrPagoEntrada": 0.0,
-      "vlrReceberEntrada": 46000.0,
-      "pctPlsCef": -0.1035437209,
-      "pctRealRecebida": 0.09737320652,
-      "vlrRecebidoCef": 17916.67,
-      "vlrGastoObra": 0.0,
-      "vlrReceberCef": 166083.33,
-      "custoLote": 33500.0,
-      "vlrComissaoCorretor": 9200.0,
-      "corretorJaRecebeu": 0.0,
-      "custoObra": 95000.0,
-      "vlrDisponivel": 107883.33,
-      "vlrTerminarObra": 95000.0,
-      "prazoInicio": null,
-      "diasObra": 0,
-      "prazoTermino": null,
-      "lucroEstimado": 92300.0,
-      "lucroInvestidor": 0.0,
-      "lucroCliente": 36920.0,
-      "lucroProspecta": 55380.0,
-      "proSoluto": 0.0,
-      "taxa": 0,
-      "qtdParcelas": 0.0,
-      "vlrParcela": 0.0,
-      "valorFinal": 0.0,
-      "lucroTotal": 55380.0
-    },
-    {
-      "ano": 2026,
       "cliente": "Vanessa Viana Boado Quiroga",
       "status": "Reavaliar",
       "empreiteiro": "",
@@ -6461,7 +6347,8 @@
         "valorTerceiroLabel": "Valor Edimar",
         "valorTerceiro": 31875.0,
         "valorProspecta": 8125.0,
-        "ordem": 0
+        "ordem": 0,
+        "obraCliente": "Carine Guimarães Silva"
       },
       {
         "lote": "LOTE 21 - ADHARA",
@@ -6470,7 +6357,8 @@
         "valorTerceiroLabel": "Valor Edimar",
         "valorTerceiro": 31875.0,
         "valorProspecta": 8125.0,
-        "ordem": 1
+        "ordem": 1,
+        "obraCliente": "Adhara Almeida Viana"
       },
       {
         "lote": "LOTE 02 - ALINE",
@@ -6479,7 +6367,8 @@
         "valorTerceiroLabel": "Valor Edimar",
         "valorTerceiro": 31875.0,
         "valorProspecta": 11125.0,
-        "ordem": 2
+        "ordem": 2,
+        "obraCliente": "Aline Cristina Montelo"
       },
       {
         "lote": "LOTE 19 - JESSÉ",
@@ -6488,7 +6377,8 @@
         "valorTerceiroLabel": "Valor Edimar",
         "valorTerceiro": 31875.0,
         "valorProspecta": 16125.0,
-        "ordem": 3
+        "ordem": 3,
+        "obraCliente": "Jesse Wilkeson de Almeida"
       },
       {
         "lote": "LOTE 22 - MARIA DAYANE",
@@ -6497,7 +6387,8 @@
         "valorTerceiroLabel": "Valor Edimar",
         "valorTerceiro": 31875.0,
         "valorProspecta": 9725.0,
-        "ordem": 4
+        "ordem": 4,
+        "obraCliente": "Maria Dayane de Sousa"
       },
       {
         "lote": "LOTE 24 - MAYKON DOUGLAS",
@@ -6506,7 +6397,8 @@
         "valorTerceiroLabel": "Valor Edimar",
         "valorTerceiro": 31875.0,
         "valorProspecta": 16125.0,
-        "ordem": 5
+        "ordem": 5,
+        "obraCliente": "Maykon Douglas Santos"
       },
       {
         "lote": "LOTE 01 - LUCIA BRENA",
@@ -6515,7 +6407,8 @@
         "valorTerceiroLabel": "Valor Edimar",
         "valorTerceiro": 31875.0,
         "valorProspecta": 6125.0,
-        "ordem": 6
+        "ordem": 6,
+        "obraCliente": "Lucia Brena Silva Sousa"
       },
       {
         "lote": "LOTE 23 - LUCIANO",
@@ -6524,7 +6417,8 @@
         "valorTerceiroLabel": "Valor Edimar",
         "valorTerceiro": 31875.0,
         "valorProspecta": 10325.0,
-        "ordem": 7
+        "ordem": 7,
+        "obraCliente": "Luciano Oliveira Leite *Aurora"
       }
     ],
     "Morada do Bosque": [
@@ -6535,7 +6429,8 @@
         "valorTerceiroLabel": "Valor Daniel",
         "valorTerceiro": 15000.0,
         "valorProspecta": 14200.0,
-        "ordem": 0
+        "ordem": 0,
+        "obraCliente": null
       },
       {
         "lote": "LOTE 2",
@@ -6544,7 +6439,8 @@
         "valorTerceiroLabel": "Valor Daniel",
         "valorTerceiro": 15000.0,
         "valorProspecta": 14200.0,
-        "ordem": 1
+        "ordem": 1,
+        "obraCliente": null
       },
       {
         "lote": "LOTE 41  - Rita Miranda",
@@ -6553,7 +6449,8 @@
         "valorTerceiroLabel": "Valor Daniel",
         "valorTerceiro": 15000.0,
         "valorProspecta": 14200.0,
-        "ordem": 2
+        "ordem": 2,
+        "obraCliente": null
       },
       {
         "lote": "LOTE 42 - Silmara",
@@ -6562,7 +6459,8 @@
         "valorTerceiroLabel": "Valor Daniel",
         "valorTerceiro": 15000.0,
         "valorProspecta": 14200.0,
-        "ordem": 3
+        "ordem": 3,
+        "obraCliente": "Silmara Maciel Macedo"
       },
       {
         "lote": "LOTE 43 - Felipe",
@@ -6571,7 +6469,8 @@
         "valorTerceiroLabel": "Valor Daniel",
         "valorTerceiro": 15000.0,
         "valorProspecta": 13800.0,
-        "ordem": 4
+        "ordem": 4,
+        "obraCliente": "Felipe Sousa Nascimento"
       },
       {
         "lote": "LOTE 22 - D Anne",
@@ -6580,7 +6479,8 @@
         "valorTerceiroLabel": "Valor Daniel",
         "valorTerceiro": 15000.0,
         "valorProspecta": 13800.0,
-        "ordem": 5
+        "ordem": 5,
+        "obraCliente": "D'ANNE ALMEIDA RODRIGUES"
       },
       {
         "lote": "LOTE 23 - Pedro Neto",
@@ -6589,7 +6489,8 @@
         "valorTerceiroLabel": "Valor Daniel",
         "valorTerceiro": 15000.0,
         "valorProspecta": 14200.0,
-        "ordem": 6
+        "ordem": 6,
+        "obraCliente": "Pedro Rodrigues Leal Neto"
       },
       {
         "lote": "LOTE 24 - mylca",
@@ -6598,7 +6499,8 @@
         "valorTerceiroLabel": "Valor Daniel",
         "valorTerceiro": 15000.0,
         "valorProspecta": 41000.0,
-        "ordem": 7
+        "ordem": 7,
+        "obraCliente": "Mylca Costa de Oliveira"
       },
       {
         "lote": "LOTE 25 - Vilde",
@@ -6607,7 +6509,8 @@
         "valorTerceiroLabel": "Valor Daniel",
         "valorTerceiro": 15000.0,
         "valorProspecta": 14200.0,
-        "ordem": 8
+        "ordem": 8,
+        "obraCliente": "Vilde Luana Pereira de Sousa"
       },
       {
         "lote": "LOTE 26 - JEOVA",
@@ -6616,7 +6519,8 @@
         "valorTerceiroLabel": "Valor Daniel",
         "valorTerceiro": 15000.0,
         "valorProspecta": 14200.0,
-        "ordem": 9
+        "ordem": 9,
+        "obraCliente": "Jeova da Silva Azevedo"
       },
       {
         "lote": "LOTE 27 - Luzia",
@@ -6625,7 +6529,8 @@
         "valorTerceiroLabel": "Valor Daniel",
         "valorTerceiro": 15000.0,
         "valorProspecta": 14200.0,
-        "ordem": 10
+        "ordem": 10,
+        "obraCliente": "Luzia Marcia Alves de Sousa"
       },
       {
         "lote": "LOTE 28 - Evenllyn",
@@ -6634,7 +6539,8 @@
         "valorTerceiroLabel": "Valor Daniel",
         "valorTerceiro": 15000.0,
         "valorProspecta": 14200.0,
-        "ordem": 11
+        "ordem": 11,
+        "obraCliente": "Evenllyn Vitoria Domingas Rodrigues da Luz"
       }
     ],
     "Jet Reginaldo": [
@@ -6645,7 +6551,8 @@
         "valorTerceiroLabel": "Valor Exclusive",
         "valorTerceiro": 30000.0,
         "valorProspecta": 26000.0,
-        "ordem": 0
+        "ordem": 0,
+        "obraCliente": "Jeferson Sousa Silva"
       },
       {
         "lote": "LOTE 08",
@@ -6654,7 +6561,8 @@
         "valorTerceiroLabel": "Valor Exclusive",
         "valorTerceiro": 30000.0,
         "valorProspecta": 26000.0,
-        "ordem": 1
+        "ordem": 1,
+        "obraCliente": null
       }
     ]
   },

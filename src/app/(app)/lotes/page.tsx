@@ -1,6 +1,7 @@
+import Link from "next/link";
 import { getEmpreendimentosComLotes } from "@/lib/queries";
 import { formatBRL, num } from "@/lib/format";
-import { Card, PageHeader, Th } from "@/components/ui";
+import { Card, PageHeader, Pill, Th } from "@/components/ui";
 import { MoneyInput } from "@/components/money-input";
 import { createLote, deleteLote, updateLote } from "./actions";
 
@@ -22,15 +23,23 @@ export default async function LotesPage() {
           const totalProspecta = emp.lotes.reduce((s, l) => s + num(l.valorProspecta), 0);
           const terceiroLabel = emp.lotes[0]?.valorTerceiroLabel ?? "Valor terceiro";
           const createWithEmp = createLote.bind(null, emp.id);
+          const disponiveis = emp.lotes.filter((l) => !l.obra).length;
 
           return (
             <div key={emp.id}>
-              <h2 className="mb-3 text-lg font-semibold text-slate-900">{emp.nome}</h2>
+              <div className="mb-3 flex items-center gap-3">
+                <h2 className="text-lg font-semibold text-slate-900">{emp.nome}</h2>
+                <Pill tone={disponiveis > 0 ? "warning" : "default"}>
+                  {disponiveis} de {emp.lotes.length} lote{emp.lotes.length === 1 ? "" : "s"} disponível
+                  {disponiveis === 1 ? "" : "eis"}
+                </Pill>
+              </div>
               <Card className="overflow-x-auto p-0">
                 <table className="min-w-full divide-y divide-slate-200">
                   <thead className="bg-slate-50">
                     <tr>
                       <Th>Lote</Th>
+                      <Th>Status</Th>
                       <Th className="text-right">Valor de Avaliação</Th>
                       <Th className="text-right">Valor Pago pela CEF</Th>
                       <Th className="text-right">{terceiroLabel}</Th>
@@ -52,6 +61,15 @@ export default async function LotesPage() {
                               defaultValue={l.lote}
                               className="w-44 rounded border border-transparent px-1.5 py-1 text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none"
                             />
+                          </td>
+                          <td className="px-3 py-1.5">
+                            {l.obra ? (
+                              <Link href={`/obras/${l.obra.id}`} className="hover:underline">
+                                <Pill tone="positive">Vendido — {l.obra.cliente}</Pill>
+                              </Link>
+                            ) : (
+                              <Pill tone="warning">Disponível</Pill>
+                            )}
                           </td>
                           <td className="px-2 py-1.5">
                             <MoneyInput
@@ -102,6 +120,7 @@ export default async function LotesPage() {
                   <tfoot className="border-t-2 border-slate-300 bg-slate-50 font-semibold">
                     <tr>
                       <td className="px-3 py-2 text-sm">TOTAL</td>
+                      <td />
                       <td className="px-3 py-2 text-right text-sm">{formatBRL(totalAvaliacao)}</td>
                       <td className="px-3 py-2 text-right text-sm">{formatBRL(totalPagoCef)}</td>
                       <td className="px-3 py-2 text-right text-sm">{formatBRL(totalTerceiro)}</td>

@@ -119,6 +119,10 @@ export const empreendimentos = pgTable("empreendimentos", {
 export const lotes = pgTable("lotes", {
   id: serial("id").primaryKey(),
   empreendimentoId: integer("empreendimento_id").notNull().references(() => empreendimentos.id, { onDelete: "cascade" }),
+  // Obra/venda vinculada a este lote, quando já tem comprador com obra cadastrada.
+  // null = lote ainda disponível para venda (substitui as linhas "Lot. X" que
+  // eram criadas em Obras só pra contar quantos lotes sobravam).
+  obraId: integer("obra_id").references(() => obras.id, { onDelete: "set null" }),
   lote: text("lote").notNull(), // "LOTE 20 - CARINE"
   valorAvaliacao: numeric("valor_avaliacao", { precision: 16, scale: 4 }).notNull().default("0"),
   valorPagoCef: numeric("valor_pago_cef", { precision: 16, scale: 4 }).notNull().default("0"),
