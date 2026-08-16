@@ -1,5 +1,5 @@
 import type { obras } from "@/db/schema";
-import { inputMoney } from "@/lib/format";
+import { MoneyInput } from "@/components/money-input";
 
 type Obra = typeof obras.$inferSelect;
 
@@ -19,22 +19,26 @@ function Field({
   required?: boolean;
 }) {
   const isMoney = type === "number" && step === "0.01";
-  const value = isMoney ? inputMoney(defaultValue as string | number | null) : defaultValue ?? "";
+  const inputClassName = "mt-1 w-full rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none";
 
   return (
     <div>
       <label htmlFor={name} className="block text-xs font-medium text-slate-500">
         {label}
       </label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        step={step}
-        required={required}
-        defaultValue={value}
-        className="mt-1 w-full rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none"
-      />
+      {isMoney ? (
+        <MoneyInput id={name} name={name} defaultValue={defaultValue} className={inputClassName} />
+      ) : (
+        <input
+          id={name}
+          name={name}
+          type={type}
+          step={step}
+          required={required}
+          defaultValue={defaultValue ?? ""}
+          className={inputClassName}
+        />
+      )}
     </div>
   );
 }
