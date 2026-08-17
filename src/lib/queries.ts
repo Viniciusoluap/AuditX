@@ -48,6 +48,12 @@ export async function getCorretores() {
 
 export async function getEmpreendimentosComLotes() {
   const emps = await db.query.empreendimentos.findMany({ orderBy: [asc(empreendimentos.ordem)] });
+  const obrasPorId = new Map(
+    (await db.query.obras.findMany({ columns: { id: true, cliente: true, status: true, ano: true } })).map((o) => [
+      o.id,
+      o,
+    ])
+  );
   const result = [];
   for (const emp of emps) {
     const itens = await db.query.lotes.findMany({
@@ -58,7 +64,8 @@ export async function getEmpreendimentosComLotes() {
       where: eq(loteResumoFinanceiro.empreendimentoId, emp.id),
       orderBy: [asc(loteResumoFinanceiro.ordem)],
     });
-    result.push({ ...emp, lotes: itens, resumo });
+    const itensComObra = itens.map((l) => ({ ...l, obra: l.obraId ? (obrasPorId.get(l.obraId) ?? null) : null }));
+    result.push({ ...emp, lotes: itensComObra, resumo });
   }
   return result;
 }

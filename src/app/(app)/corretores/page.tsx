@@ -2,6 +2,7 @@ import { getCorretores } from "@/lib/queries";
 import { formatBRL, num } from "@/lib/format";
 import { Card, PageHeader, StatCard, Th } from "@/components/ui";
 import { MoneyInput } from "@/components/money-input";
+import { ConfirmSubmitButton } from "@/components/confirm-submit-button";
 import { createComissao, deleteComissao, updateComissao } from "./actions";
 
 export default async function CorretoresPage() {
@@ -55,7 +56,7 @@ export default async function CorretoresPage() {
                       form={formId}
                       name="clienteLote"
                       defaultValue={r.clienteLote}
-                      className="w-48 rounded border border-transparent px-1.5 py-1 text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none"
+                      className="w-48 rounded border border-transparent px-1.5 py-1 text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1"
                     />
                   </td>
                   <td className="px-3 py-1.5">
@@ -63,7 +64,7 @@ export default async function CorretoresPage() {
                       form={formId}
                       name="corretor"
                       defaultValue={r.corretor}
-                      className="w-32 rounded border border-transparent px-1.5 py-1 text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none"
+                      className="w-32 rounded border border-transparent px-1.5 py-1 text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1"
                     />
                   </td>
                   {(["comissaoTotal", "parcela1", "parcela2", "parcela3", "parcela4"] as const).map((field) => (
@@ -72,7 +73,7 @@ export default async function CorretoresPage() {
                         formId={formId}
                         name={field}
                         defaultValue={r[field]}
-                        className="w-24 rounded border border-transparent px-1.5 py-1 text-right text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none"
+                        className="w-24 rounded border border-transparent px-1.5 py-1 text-right text-sm hover:border-slate-200 focus:border-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1"
                       />
                     </td>
                   ))}
@@ -85,11 +86,14 @@ export default async function CorretoresPage() {
                     >
                       Salvar
                     </button>
-                    <form action={deleteWithId} className="inline">
-                      <button type="submit" className="ml-2 rounded-md px-2.5 py-1 text-xs font-medium text-red-600 hover:bg-red-50">
-                        Excluir
-                      </button>
-                    </form>
+                    <ConfirmSubmitButton
+                      action={deleteWithId}
+                      confirmMessage={`Excluir a comissão de "${r.corretor}" (${r.clienteLote})? Esta ação não pode ser desfeita.`}
+                      formClassName="inline"
+                      className="ml-2 rounded-md px-2.5 py-1 text-xs font-medium text-red-600 hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
+                    >
+                      Excluir
+                    </ConfirmSubmitButton>
                   </td>
                 </tr>
               );
@@ -118,17 +122,17 @@ export default async function CorretoresPage() {
             name="clienteLote"
             placeholder="Cliente / Lote"
             required
-            className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none sm:col-span-2"
+            className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1 sm:col-span-2"
           />
           <input
             name="corretor"
             placeholder="Corretor"
             required
-            className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none"
+            className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1"
           />
-          <MoneyInput name="comissaoTotal" placeholder="Comissão" className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
-          <MoneyInput name="parcela1" placeholder="1ª Pcl" className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
-          <MoneyInput name="parcela2" placeholder="2ª Pcl" className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none" />
+          <MoneyInput name="comissaoTotal" placeholder="Comissão" className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1" />
+          <MoneyInput name="parcela1" placeholder="1ª Pcl" className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1" />
+          <MoneyInput name="parcela2" placeholder="2ª Pcl" className="rounded-md border border-slate-300 px-2.5 py-1.5 text-sm focus:border-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-1" />
           <button type="submit" className="rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800">
             Adicionar
           </button>

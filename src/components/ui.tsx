@@ -36,15 +36,19 @@ export function StatCard({
   label: string;
   value: string;
   hint?: string;
-  tone?: "default" | "positive" | "negative";
+  tone?: "default" | "positive" | "negative" | "warning";
 }) {
-  const toneClass =
-    tone === "positive" ? "text-emerald-600" : tone === "negative" ? "text-red-600" : "text-slate-900";
+  const toneClass = {
+    default: "text-slate-900",
+    positive: "text-emerald-700",
+    negative: "text-red-600",
+    warning: "text-amber-600",
+  }[tone];
   return (
     <Card>
       <p className="text-xs font-medium uppercase tracking-wide text-slate-500">{label}</p>
       <p className={`mt-2 text-2xl font-semibold ${toneClass}`}>{value}</p>
-      {hint ? <p className="mt-1 text-xs text-slate-400">{hint}</p> : null}
+      {hint ? <p className="mt-1 text-xs text-slate-500">{hint}</p> : null}
     </Card>
   );
 }

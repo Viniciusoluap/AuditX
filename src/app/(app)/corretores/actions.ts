@@ -4,12 +4,11 @@ import { revalidatePath } from "next/cache";
 import { eq } from "drizzle-orm";
 import { db } from "@/db";
 import { corretoresComissoes } from "@/db/schema";
-
-function toNum(v: FormDataEntryValue | null) {
-  return v === null || v === "" ? "0" : String(Number(v));
-}
+import { requireAuth } from "@/lib/require-auth";
+import { toMoneyString as toNum } from "@/lib/parse-money";
 
 export async function createComissao(formData: FormData) {
+  await requireAuth();
   await db.insert(corretoresComissoes).values({
     clienteLote: String(formData.get("clienteLote") ?? ""),
     corretor: String(formData.get("corretor") ?? ""),
@@ -24,6 +23,7 @@ export async function createComissao(formData: FormData) {
 }
 
 export async function updateComissao(id: number, formData: FormData) {
+  await requireAuth();
   await db
     .update(corretoresComissoes)
     .set({
@@ -40,6 +40,7 @@ export async function updateComissao(id: number, formData: FormData) {
 }
 
 export async function deleteComissao(id: number) {
+  await requireAuth();
   await db.delete(corretoresComissoes).where(eq(corretoresComissoes.id, id));
   revalidatePath("/corretores");
 }

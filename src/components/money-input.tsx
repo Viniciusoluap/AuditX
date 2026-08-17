@@ -2,8 +2,32 @@
 
 import { useState } from "react";
 
+/**
+ * Converte texto digitado em número. Reconhece tanto o formato pt-BR
+ * ("1.500,50") quanto alguém digitando com ponto decimal por hábito
+ * ("1500.50") — sem isso, "1500.50" virava 150050 (ponto tratado sempre
+ * como separador de milhar, removido antes de ler o número).
+ */
 function parseMoneyInput(raw: string): string {
-  const cleaned = raw.replace(/\./g, "").replace(",", ".").replace(/[^\d.-]/g, "");
+  let cleaned = raw.trim().replace(/[^\d.,-]/g, "");
+  const hasComma = cleaned.includes(",");
+  const hasDot = cleaned.includes(".");
+
+  if (hasComma && hasDot) {
+    // pt-BR completo: "1.500,50" -> ponto = milhar, vírgula = decimal
+    cleaned = cleaned.replace(/\./g, "").replace(",", ".");
+  } else if (hasComma) {
+    // só vírgula -> é o separador decimal: "1500,50"
+    cleaned = cleaned.replace(",", ".");
+  } else if (hasDot) {
+    const parts = cleaned.split(".");
+    const lastGroup = parts[parts.length - 1];
+    // um único ponto seguido de 1-2 dígitos = decimal ("1500.5"); senão,
+    // são pontos de milhar sem centavos ("1.500", "1.234.567")
+    const isDecimalPoint = parts.length === 2 && lastGroup.length <= 2;
+    if (!isDecimalPoint) cleaned = cleaned.replace(/\./g, "");
+  }
+
   const n = Number(cleaned);
   return Number.isFinite(n) ? String(n) : "0";
 }
@@ -36,12 +60,17 @@ export function MoneyInput({
 }) {
   const hasDefault = defaultValue !== null && defaultValue !== undefined;
   const initialRaw = hasDefault ? String(defaultValue) : "0";
-  const [raw, setRaw] = useState(initialRaw);
   const [display, setDisplay] = useState(hasDefault ? formatMoneyDisplay(initialRaw) : "");
+
+  // O valor enviado no submit é sempre derivado do que está na tela agora —
+  // nada de estado "raw" separado que só atualiza no onBlur. Isso evitava
+  // sincronizar: dar Enter no campo (submit antes do blur disparar) mandava
+  // o valor anterior (ou 0, ao criar).
+  const rawValue = display === "" ? "0" : parseMoneyInput(display);
 
   return (
     <>
-      <input type="hidden" name={name} value={raw} form={formId} />
+      <input type="hidden" name={name} value={rawValue} form={formId} />
       <input
         id={id}
         type="text"
@@ -52,9 +81,7 @@ export function MoneyInput({
         onChange={(e) => setDisplay(e.target.value)}
         onFocus={(e) => e.target.select()}
         onBlur={(e) => {
-          const parsed = parseMoneyInput(e.target.value);
-          setRaw(parsed);
-          setDisplay(e.target.value === "" ? "" : formatMoneyDisplay(parsed));
+          setDisplay(e.target.value === "" ? "" : formatMoneyDisplay(parseMoneyInput(e.target.value)));
         }}
         className={className}
       />

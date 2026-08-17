@@ -15,6 +15,13 @@
       "when": 1786678905000,
       "tag": "0001_lumpy_richard_fisk",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1786902399901,
+      "tag": "0002_shallow_onslaught",
+      "breakpoints": true
     }
   ]
 }

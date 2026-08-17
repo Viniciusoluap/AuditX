@@ -25,6 +25,16 @@ const authConfigured =
  */
 export function middleware(request: NextRequest) {
   if (!authConfigured) {
+    // Em produção, autenticação ausente nunca deve virar "sistema aberto" —
+    // é sinal de variável de ambiente esquecida na Vercel, não uma escolha
+    // deliberada. Falha fechado: bloqueia tudo em vez de expor os dados
+    // financeiros sem login. Em dev local (sem essa var), continua liberado.
+    if (process.env.NODE_ENV === "production") {
+      return new NextResponse(
+        "Configuração de autenticação ausente (NEXT_PUBLIC_SUPABASE_URL). Acesso bloqueado por segurança — configure as variáveis do Supabase.",
+        { status: 503 }
+      );
+    }
     return NextResponse.next();
   }
 

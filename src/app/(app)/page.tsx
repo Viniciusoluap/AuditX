@@ -100,7 +100,7 @@ export default async function DashboardPage() {
         <Card>
           <h2 className="text-sm font-semibold text-slate-900">Investidores</h2>
           <p className="mt-4 text-2xl font-semibold text-slate-900">{formatBRL(capitalInvestido)}</p>
-          <p className="mt-1 text-xs text-slate-400">Capital aportado (valor inicial, sem juros acumulados)</p>
+          <p className="mt-1 text-xs text-slate-500">Capital aportado (valor inicial, sem juros acumulados)</p>
           <Link href="/investidores" className="mt-4 inline-block text-sm font-medium text-slate-900 underline underline-offset-4">
             Ver investidores →
           </Link>

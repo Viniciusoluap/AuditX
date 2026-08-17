@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getAnotacoes, getObras } from "@/lib/queries";
-import { formatBRL, formatDate, num } from "@/lib/format";
+import { formatBRL, formatDate, formatPercent, num } from "@/lib/format";
 import { Card, PageHeader, Pill, Tabs, Td, Th } from "@/components/ui";
 import { statusTone } from "@/lib/status";
 
@@ -14,32 +14,37 @@ export default async function ObrasPage({
 
   const [rows, anotacoes] = await Promise.all([getObras(ano), getAnotacoes("obras", ano)]);
 
-  const totais = rows.reduce(
-    (acc, r) => ({
-      vgv: acc.vgv + num(r.vgv),
-      vlrFinanciado: acc.vlrFinanciado + num(r.vlrFinanciado),
-      fgts: acc.fgts + num(r.fgts),
-      subsidio: acc.subsidio + num(r.subsidio),
-      vlrReceberCef: acc.vlrReceberCef + num(r.vlrReceberCef),
-      custoObra: acc.custoObra + num(r.custoObra),
-      vlrDisponivel: acc.vlrDisponivel + num(r.vlrDisponivel),
-      lucroEstimado: acc.lucroEstimado + num(r.lucroEstimado),
-      lucroProspecta: acc.lucroProspecta + num(r.lucroProspecta),
-      lucroTotal: acc.lucroTotal + num(r.lucroTotal),
-    }),
-    {
-      vgv: 0,
-      vlrFinanciado: 0,
-      fgts: 0,
-      subsidio: 0,
-      vlrReceberCef: 0,
-      custoObra: 0,
-      vlrDisponivel: 0,
-      lucroEstimado: 0,
-      lucroProspecta: 0,
-      lucroTotal: 0,
-    }
-  );
+  const MONEY_FIELDS = [
+    "vgv",
+    "vlrFinanciado",
+    "fgts",
+    "subsidio",
+    "entrada",
+    "vlrPagoEntrada",
+    "vlrReceberEntrada",
+    "vlrRecebidoCef",
+    "vlrGastoObra",
+    "vlrReceberCef",
+    "custoLote",
+    "vlrComissaoCorretor",
+    "corretorJaRecebeu",
+    "custoObra",
+    "vlrDisponivel",
+    "vlrTerminarObra",
+    "lucroEstimado",
+    "lucroInvestidor",
+    "lucroCliente",
+    "lucroProspecta",
+    "proSoluto",
+    "vlrParcela",
+    "valorFinal",
+    "lucroTotal",
+  ] as const;
+
+  const totais = rows.reduce((acc, r) => {
+    for (const field of MONEY_FIELDS) acc[field] += num(r[field]);
+    return acc;
+  }, Object.fromEntries(MONEY_FIELDS.map((f) => [f, 0])) as Record<(typeof MONEY_FIELDS)[number], number>);
 
   const grupos = new Map<string, typeof anotacoes>();
   for (const a of anotacoes) {
@@ -55,7 +60,7 @@ export default async function ObrasPage({
         description="Controle completo de vendas, financiamento CEF, custos e lucro por obra — equivalente às abas “Obras 2025” e “Obras 2026”."
         action={
           <Link
-            href="/obras/novo"
+            href={`/obras/novo?ano=${ano}`}
             className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
           >
             + Nova obra
@@ -72,6 +77,9 @@ export default async function ObrasPage({
         ]}
       />
 
+      <p className="mb-2 text-xs text-slate-500">
+        Tabela completa, igual à planilha original — arraste para o lado para ver todas as colunas.
+      </p>
       <Card className="overflow-x-auto p-0">
         <table className="min-w-full divide-y divide-slate-200">
           <thead className="bg-slate-50">
@@ -82,11 +90,35 @@ export default async function ObrasPage({
               <Th>Cidade / UF</Th>
               <Th className="text-right">VGV</Th>
               <Th className="text-right">Vlr Financiado</Th>
+              <Th className="text-right">FGTS</Th>
+              <Th className="text-right">Subsídio</Th>
+              <Th className="text-right">Entrada</Th>
+              <Th className="text-right">Vlr já Pago Entrada</Th>
+              <Th className="text-right">Vlr a Receber Entrada</Th>
+              <Th className="text-right">% PLS CEF</Th>
+              <Th className="text-right">% Real Recebida</Th>
+              <Th className="text-right">Vlr Recebido CEF</Th>
+              <Th className="text-right">Vlr Gasto Obra</Th>
+              <Th className="text-right">Vlr a Receber CEF</Th>
+              <Th className="text-right">Custo do Lote</Th>
+              <Th className="text-right">Comissão Corretor</Th>
+              <Th className="text-right">Corretor já Recebeu</Th>
               <Th className="text-right">Custo de Obra</Th>
               <Th className="text-right">Vlr Disponível</Th>
-              <Th className="text-right">Lucro Estimado</Th>
-              <Th className="text-right">Lucro Total</Th>
+              <Th className="text-right">Vlr p/ Terminar Obra</Th>
+              <Th>Prazo Início</Th>
+              <Th className="text-right">Dias de Obra</Th>
               <Th>Prazo Término</Th>
+              <Th className="text-right">Lucro Estimado</Th>
+              <Th className="text-right">Lucro Investidor</Th>
+              {ano === 2026 ? <Th className="text-right">Lucro Cliente</Th> : null}
+              <Th className="text-right">Lucro Prospecta</Th>
+              <Th className="text-right">Pró Soluto</Th>
+              <Th className="text-right">Taxa</Th>
+              <Th className="text-right">Qtd Parcelas</Th>
+              <Th className="text-right">Vlr Parcela</Th>
+              <Th className="text-right">Valor Final</Th>
+              <Th className="text-right">Lucro Total</Th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -104,17 +136,41 @@ export default async function ObrasPage({
                 <Td>{r.cidadeUf || "—"}</Td>
                 <Td className="text-right">{formatBRL(r.vgv)}</Td>
                 <Td className="text-right">{formatBRL(r.vlrFinanciado)}</Td>
+                <Td className="text-right">{formatBRL(r.fgts)}</Td>
+                <Td className="text-right">{formatBRL(r.subsidio)}</Td>
+                <Td className="text-right">{formatBRL(r.entrada)}</Td>
+                <Td className="text-right">{formatBRL(r.vlrPagoEntrada)}</Td>
+                <Td className="text-right">{formatBRL(r.vlrReceberEntrada)}</Td>
+                <Td className="text-right">{formatPercent(r.pctPlsCef)}</Td>
+                <Td className="text-right">{formatPercent(r.pctRealRecebida)}</Td>
+                <Td className="text-right">{formatBRL(r.vlrRecebidoCef)}</Td>
+                <Td className="text-right">{formatBRL(r.vlrGastoObra)}</Td>
+                <Td className="text-right">{formatBRL(r.vlrReceberCef)}</Td>
+                <Td className="text-right">{formatBRL(r.custoLote)}</Td>
+                <Td className="text-right">{formatBRL(r.vlrComissaoCorretor)}</Td>
+                <Td className="text-right">{formatBRL(r.corretorJaRecebeu)}</Td>
                 <Td className="text-right">{formatBRL(r.custoObra)}</Td>
-                <Td className={`text-right ${num(r.vlrDisponivel) < 0 ? "text-red-600" : "text-emerald-600"}`}>
+                <Td className={`text-right ${num(r.vlrDisponivel) < 0 ? "text-red-600" : "text-emerald-700"}`}>
                   {formatBRL(r.vlrDisponivel)}
                 </Td>
+                <Td className="text-right">{formatBRL(r.vlrTerminarObra)}</Td>
+                <Td>{formatDate(r.prazoInicio)}</Td>
+                <Td className="text-right">{r.diasObra}</Td>
+                <Td>{formatDate(r.prazoTermino)}</Td>
                 <Td className={`text-right ${num(r.lucroEstimado) < 0 ? "text-red-600" : "text-slate-700"}`}>
                   {formatBRL(r.lucroEstimado)}
                 </Td>
+                <Td className="text-right">{formatBRL(r.lucroInvestidor)}</Td>
+                {ano === 2026 ? <Td className="text-right">{formatBRL(r.lucroCliente)}</Td> : null}
+                <Td className="text-right">{formatBRL(r.lucroProspecta)}</Td>
+                <Td className="text-right">{formatBRL(r.proSoluto)}</Td>
+                <Td className="text-right">{formatPercent(r.taxa)}</Td>
+                <Td className="text-right">{num(r.qtdParcelas)}</Td>
+                <Td className="text-right">{formatBRL(r.vlrParcela)}</Td>
+                <Td className="text-right">{formatBRL(r.valorFinal)}</Td>
                 <Td className={`text-right font-medium ${num(r.lucroTotal) < 0 ? "text-red-600" : "text-emerald-700"}`}>
                   {formatBRL(r.lucroTotal)}
                 </Td>
-                <Td>{formatDate(r.prazoTermino)}</Td>
               </tr>
             ))}
           </tbody>
@@ -125,13 +181,37 @@ export default async function ObrasPage({
               </Td>
               <Td className="text-right">{formatBRL(totais.vgv)}</Td>
               <Td className="text-right">{formatBRL(totais.vlrFinanciado)}</Td>
+              <Td className="text-right">{formatBRL(totais.fgts)}</Td>
+              <Td className="text-right">{formatBRL(totais.subsidio)}</Td>
+              <Td className="text-right">{formatBRL(totais.entrada)}</Td>
+              <Td className="text-right">{formatBRL(totais.vlrPagoEntrada)}</Td>
+              <Td className="text-right">{formatBRL(totais.vlrReceberEntrada)}</Td>
+              <Td />
+              <Td />
+              <Td className="text-right">{formatBRL(totais.vlrRecebidoCef)}</Td>
+              <Td className="text-right">{formatBRL(totais.vlrGastoObra)}</Td>
+              <Td className="text-right">{formatBRL(totais.vlrReceberCef)}</Td>
+              <Td className="text-right">{formatBRL(totais.custoLote)}</Td>
+              <Td className="text-right">{formatBRL(totais.vlrComissaoCorretor)}</Td>
+              <Td className="text-right">{formatBRL(totais.corretorJaRecebeu)}</Td>
               <Td className="text-right">{formatBRL(totais.custoObra)}</Td>
               <Td className={`text-right ${totais.vlrDisponivel < 0 ? "text-red-600" : "text-emerald-700"}`}>
                 {formatBRL(totais.vlrDisponivel)}
               </Td>
-              <Td className="text-right">{formatBRL(totais.lucroEstimado)}</Td>
-              <Td className="text-right">{formatBRL(totais.lucroTotal)}</Td>
+              <Td className="text-right">{formatBRL(totais.vlrTerminarObra)}</Td>
               <Td />
+              <Td />
+              <Td />
+              <Td className="text-right">{formatBRL(totais.lucroEstimado)}</Td>
+              <Td className="text-right">{formatBRL(totais.lucroInvestidor)}</Td>
+              {ano === 2026 ? <Td className="text-right">{formatBRL(totais.lucroCliente)}</Td> : null}
+              <Td className="text-right">{formatBRL(totais.lucroProspecta)}</Td>
+              <Td className="text-right">{formatBRL(totais.proSoluto)}</Td>
+              <Td />
+              <Td />
+              <Td className="text-right">{formatBRL(totais.vlrParcela)}</Td>
+              <Td className="text-right">{formatBRL(totais.valorFinal)}</Td>
+              <Td className="text-right">{formatBRL(totais.lucroTotal)}</Td>
             </tr>
           </tfoot>
         </table>
