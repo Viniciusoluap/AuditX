@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { authConfigured, createClient } from "@/lib/supabase/server";
+import { getSessionUser } from "@/lib/auth";
 import { logout } from "./actions";
 
 const NAV = [
@@ -13,15 +13,9 @@ const NAV = [
 ];
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
-  let userEmail: string | null = null;
-  if (authConfigured) {
-    const supabase = await createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (!user) redirect("/login");
-    userEmail = user.email ?? null;
-  }
+  const user = await getSessionUser();
+  if (!user) redirect("/login");
+  const userEmail = user.email;
 
   return (
     <div className="min-h-screen bg-slate-50">

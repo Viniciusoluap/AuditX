@@ -1,21 +1,10 @@
-import { authConfigured, createClient } from "@/lib/supabase/server";
+import { getSessionUser } from "@/lib/auth";
 
 /**
- * Barreira de autenticação para Server Actions de escrita.
- *
- * O middleware só confere a *presença* de um cookie de sessão (checagem
- * rápida, compatível com Edge); a validação real do token acontece aqui,
- * em Node.js. Sem isso, um POST direto ao endpoint da Server Action (fora
- * da UI) conseguia gravar/apagar dados financeiros sem sessão válida.
+ * Valida a sessão local no servidor antes de qualquer Server Action de escrita.
  */
 export async function requireAuth(): Promise<void> {
-  if (!authConfigured) return;
-
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
+  const user = await getSessionUser();
   if (!user) {
     throw new Error("Sessão inválida ou expirada. Faça login novamente para salvar alterações.");
   }
