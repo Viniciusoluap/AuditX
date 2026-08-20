@@ -200,3 +200,16 @@ export const configuracoes = pgTable("configuracoes", {
   chave: text("chave").primaryKey(),
   valor: text("valor").notNull(),
 });
+
+
+// ---------------------------------------------------------------------------
+// AUTENTICAÇÃO LOCAL — substitui o Supabase Auth após a migração para Neon.
+// O hash bcrypt é preservado para que o usuário mantenha a mesma senha.
+// ---------------------------------------------------------------------------
+export const authUsers = pgTable("auth_users", {
+  id: text("id").primaryKey(),
+  email: text("email").notNull(),
+  encryptedPassword: text("encrypted_password").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
